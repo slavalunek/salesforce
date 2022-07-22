@@ -1,6 +1,7 @@
-package org.example;
+package org.example.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,10 +20,19 @@ public class AccountsPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @Override
+    public boolean isPageOpened() {
+        By accountsLocator = By.xpath("//div[contains(@class,'slds-breadcrumb__item')]//span[text()='Accounts']");
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(accountsLocator));
+            return true;
+        } catch (TimeoutException e){
+            return false;
+        }
+    }
+
     public AccountsPage open() {
         driver.get("https://d8d000005ce1yeaw.lightning.force.com/lightning/o/Account/list?filterName=Recent");
-        By accountsLocator = By.xpath("//div[contains(@class,'slds-breadcrumb__item')]//span[text()='Accounts']");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(accountsLocator));
         return this;
     }
 

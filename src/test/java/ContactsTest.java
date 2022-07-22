@@ -1,7 +1,7 @@
 import com.github.javafaker.Faker;
-import org.example.ContactsPage;
-import org.example.LoginPage;
-import org.example.NewAccountModal;
+import org.example.pages.ContactsPage;
+import org.example.pages.LoginPage;
+import org.example.pages.NewAccountModal;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
