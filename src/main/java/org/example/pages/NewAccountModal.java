@@ -28,24 +28,26 @@ public class NewAccountModal extends BasePage {
     }
 
     public NewAccountModal fillInNewAccountModal(Account account) {
-        new InputSearch(driver,"Account Name").fillSearchForAccounts(account.getAccountName(),"//div[@title='Ddc I Inc']");
-        new InputSearch(driver,"Parent Account").fillSearchForAccounts("","//div[@title='вапар']");
+        new InputSearch(driver,"Account Name").fillSearchForNameAccount(account.getAccountName());
+        new InputSearch(driver,"Parent Account").fillSearchForParentAccount("");
+
         if (account.getWebsite() != null){
             new Input(driver, "Website").fillInForAccounts(account.getWebsite());
         }
 
         if (account.getType1() != null){
-            new Input(driver, "Type").fillInForAccounts(account.getType1());
+            new DropDown(driver, "Type").selectForAccounts(account.getType1());
         }
 
         if (account.getType2() != null){
-            new Input(driver, "Industry").fillInForAccounts(account.getType2());
+            new DropDown(driver, "Industry").selectForAccounts(account.getType2());
         }
 
         if (account.getEmployees() != null){
             new Input(driver, "Employees").fillInForAccounts(account.getEmployees());
         }
-
+        return this;
+    }
 
 //        new Input(driver, "Billing City").fillInForAccounts(billingCity);
 //        new Input(driver, "Billing Zip/Postal Code").fillInForAccounts(billingZip);
@@ -58,8 +60,7 @@ public class NewAccountModal extends BasePage {
 //        new Textarea(driver, "Description").fillForAccounts(description);
 //        new Textarea(driver, "Billing Street").fillForAccounts(billingStreet);
 //        new Textarea(driver, "Shipping Street").fillForAccounts(shippingStreet);
-        return this;
-    }
+
 
 //    public NewAccountModal fillInNewAccountModal(String dd, String website, String phone,
 //                                                 String type1, String type2, String employees, String billingCity,
@@ -88,9 +89,9 @@ public class NewAccountModal extends BasePage {
 //        return this;
 //    }
 
-    public NewAccountModal saveAccount() {
+    public AccountsPage saveAccount() {
         saveAccountButton.click();
-        return this;
+        return new AccountsPage(driver);
     }
 
     public NewAccountModal fillInNewContactModal(String salutation, String lastName, String accountName,String mailingStreet){

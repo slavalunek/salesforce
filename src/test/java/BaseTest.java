@@ -1,5 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.pages.AccountsPage;
+import org.example.pages.CreatedAccountModel;
 import org.example.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +18,7 @@ public class BaseTest {
     WebDriverWait wait;
     HomePage homePage;
     AccountsPage accountsPage;
+    CreatedAccountModel createdAccountModel;
 
     @BeforeMethod()
     public void setUp() {
@@ -35,6 +37,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         homePage = new HomePage(driver);
         accountsPage = new AccountsPage(driver);
+        createdAccountModel = new CreatedAccountModel(driver);
     }
 
     //@AfterMethod(alwaysRun = true)

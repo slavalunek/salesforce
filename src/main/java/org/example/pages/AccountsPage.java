@@ -36,12 +36,15 @@ public class AccountsPage extends BasePage {
         return this;
     }
 
-    public AccountsPage clickNewButton() {
+    public NewAccountModal clickNewButton() {
         newButton.click();
-        return this;
+        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Save']")));
+        return new NewAccountModal(driver);
     }
 
     public Boolean conformationRegistration(){
+        By element = By.xpath ("//lightning-icon[contains(@class,'slds-icon-utility-success')]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         return conformation.isDisplayed();
     }
 }

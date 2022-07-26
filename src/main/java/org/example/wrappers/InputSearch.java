@@ -11,7 +11,6 @@ public class InputSearch {
 
     WebDriver driver;
     String label;
-
     WebDriverWait wait;
 
     public InputSearch(WebDriver driver, String label) {
@@ -20,11 +19,18 @@ public class InputSearch {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public InputSearch fillSearchForAccounts(String text, String locator) {
+    public InputSearch fillSearchForNameAccount(String text) {
         By fullLocator = By.xpath(String.format("//span[text()='%s']//ancestor::div[contains(@class,'uiInput')]//input", label));
         driver.findElement(fullLocator).sendKeys(text);
         driver.findElement(fullLocator).click();
-        By element = By.xpath(locator);
+        return this;
+    }
+
+    public InputSearch fillSearchForParentAccount(String text) {
+        By fullLocator = By.xpath(String.format("//span[text()='%s']//ancestor::div[contains(@class,'uiInput')]//input", label));
+        driver.findElement(fullLocator).sendKeys(text);
+        driver.findElement(fullLocator).click();
+        By element = By.xpath("//div[@title='Ward-Rice']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).click();
         return this;
