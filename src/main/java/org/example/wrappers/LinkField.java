@@ -18,10 +18,9 @@ public class LinkField {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public LinkField getTextLink() {
-        By fullLocator = By.xpath(String.format("//span[text()='%s']//ancestor::div[contains(@class,'label-inline')]//" +
-                "a[@href='https://www.clare-veum.biz']", label));
-        driver.findElement(fullLocator).getText();
-        return this;
+    public String getTextLink() {
+        By fullLocator = By.xpath(String.format("//span[text()='%s']//" +
+                "ancestor::div[contains(@class,'slds-form-element')]//a", label));
+        return driver.findElement(fullLocator).getText();
     }
 }

@@ -18,10 +18,9 @@ public class TextField {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public TextField getText() {
+    public String getText() {
         By fullLocator = By.xpath(String.format("//span[text()='%s']//" +
                 "ancestor::div[contains(@class,'label-inline')]//lightning-formatted-text[@slot='outputField']", label));
-        driver.findElement(fullLocator).getText();
-        return this;
+        return driver.findElement(fullLocator).getText();
     }
 }

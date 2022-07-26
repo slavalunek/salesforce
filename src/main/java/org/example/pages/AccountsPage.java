@@ -13,7 +13,7 @@ public class AccountsPage extends BasePage {
     @FindBy(xpath = "//div[@title='New']")
     private WebElement newButton;
     @FindBy(xpath = "//lightning-icon[contains(@class,'slds-icon-utility-success')]")
-    private WebElement conformation;
+    private WebElement confirmationMessage;
 
     public AccountsPage(WebDriver driver) {
         super(driver);
@@ -42,9 +42,9 @@ public class AccountsPage extends BasePage {
         return new NewAccountModal(driver);
     }
 
-    public Boolean conformationRegistration(){
+    public Boolean isConfirmationMessageDisplayed(){
         By element = By.xpath ("//lightning-icon[contains(@class,'slds-icon-utility-success')]");
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-        return conformation.isDisplayed();
+        return confirmationMessage.isDisplayed();
     }
 }

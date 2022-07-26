@@ -18,10 +18,9 @@ public class DigitField {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public DigitField getText() {
+    public String getText() {
         By fullLocator = By.xpath(String.format("//span[text()='%s']//" +
                 "ancestor::div[contains(@class,'label-inline')]//lightning-formatted-number[@slot='outputField']", label));
-        driver.findElement(fullLocator).getText();
-        return this;
+        return driver.findElement(fullLocator).getText();
     }
 }

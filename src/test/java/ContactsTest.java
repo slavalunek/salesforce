@@ -20,6 +20,6 @@ public class ContactsTest extends BaseTest {
         Faker faker = new Faker();
         new NewAccountModal(driver).fillInNewContactModal("Ms.", faker.company().name(),"fgdhdgh",
                 faker.leagueOfLegends().summonerSpell()).saveContact();
-        Assert.assertTrue(accountsPage.conformationRegistration(),"the user did not create a contact");
+        Assert.assertTrue(accountsPage.isConfirmationMessageDisplayed(),"the user did not create a contact");
     }
 }

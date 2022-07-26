@@ -1,7 +1,6 @@
 import com.github.javafaker.Faker;
 import org.example.dto.Account;
 import org.example.pages.*;
-import org.example.steps.AccountsSteps;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,27 +20,18 @@ public class LoginTest extends BaseTest {
         Faker faker = new Faker();
         String accountName = faker.company().name();
         Account account = new Account(accountName);
+        account.setParentAccount("Oberbrunner-Keeling");
         account.setWebsite(faker.internet().url());
-        account.setPhone(faker.phoneNumber().phoneNumber());
         account.setType1("Competitor");
         account.setType2("Apparel");
-        account.setEmployees(faker.lebowski().actor());
+        account.setEmployees(faker.number().digit());
 
-        new AccountsSteps(driver).createNewAccount(account);
+        // new AccountsSteps(driver).createNewAccount(account);
 
-//        new NewAccountModal(driver).fillInNewAccountModal(account)
-//                                   .saveAccount();
-//        Assert.assertTrue(accountsPage.conformationRegistration(), "The account for user was not created");
-
-
-
-//        new NewAccountModal(driver).fillInNewAccountModal("dd", faker.internet().url(),
-//                                           faker.phoneNumber().phoneNumber(), "Competitor", "Apparel", faker.lebowski().actor(),
-//                                           faker.address().city(), faker.address().zipCode(), faker.address().country(),
-//                                           faker.address().country(), faker.address().cityName(), faker.address().zipCode(),
-//                                           faker.address().country(), faker.address().country(), faker.rickAndMorty().quote(),
-//                                           faker.hobbit().location(), faker.lordOfTheRings().location())
-//                                   .saveAccount();
-
+        new NewAccountModal(driver).fillInNewAccountModal(account)
+                                   .saveAccount();
+        Assert.assertTrue(accountsPage.isConfirmationMessageDisplayed(), "The account for user was not created");
+        Account actualAccount =  new AccountsDetailsPage(driver).open().getAccountDetails();
+        Assert.assertEquals(actualAccount, account);
     }
 }

@@ -29,7 +29,7 @@ public class NewAccountModal extends BasePage {
 
     public NewAccountModal fillInNewAccountModal(Account account) {
         new InputSearch(driver,"Account Name").fillSearchForNameAccount(account.getAccountName());
-        new InputSearch(driver,"Parent Account").fillSearchForParentAccount("");
+        new InputSearch(driver,"Parent Account").fillSearchForParentAccount();
 
         if (account.getWebsite() != null){
             new Input(driver, "Website").fillInForAccounts(account.getWebsite());
@@ -60,35 +60,6 @@ public class NewAccountModal extends BasePage {
 //        new Textarea(driver, "Description").fillForAccounts(description);
 //        new Textarea(driver, "Billing Street").fillForAccounts(billingStreet);
 //        new Textarea(driver, "Shipping Street").fillForAccounts(shippingStreet);
-
-
-//    public NewAccountModal fillInNewAccountModal(String dd, String website, String phone,
-//                                                 String type1, String type2, String employees, String billingCity,
-//                                                 String billingZip, String province, String billingCountry,
-//                                                 String shippingCity, String shippingZip, String shippingState,
-//                                                 String shippingCountry, String description, String billingStreet,
-//                                                 String shippingStreet) {
-//        new InputSearch(driver,"Account Name").fillSearchForAccounts(dd,"//div[@title='Ddc I Inc']");
-//        new InputSearch(driver,"Parent Account").fillSearchForAccounts("","//div[@title='вапар']");
-//        new Input(driver, "Website").fillInForAccounts(website);
-//        new Input(driver, "Phone").fillInForAccounts(phone);
-//        new DropDown(driver, "Type").selectForAccounts(type1);
-//        new DropDown(driver,"Industry").selectForAccounts(type2);
-//        new Input(driver, "Employees").fillInForAccounts(employees);
-//        new Input(driver, "Billing City").fillInForAccounts(billingCity);
-//        new Input(driver, "Billing Zip/Postal Code").fillInForAccounts(billingZip);
-//        new Input(driver, "Billing State/Province").fillInForAccounts(province);
-//        new Input(driver, "Billing Country").fillInForAccounts(billingCountry);
-//        new Input(driver, "Shipping City").fillInForAccounts(shippingCity);
-//        new Input(driver, "Shipping Zip/Postal Code").fillInForAccounts(shippingZip);
-//        new Input(driver, "Shipping State/Province").fillInForAccounts(shippingState);
-//        new Input(driver, "Shipping Country").fillInForAccounts(shippingCountry);
-//        new Textarea(driver, "Description").fillForAccounts(description);
-//        new Textarea(driver, "Billing Street").fillForAccounts(billingStreet);
-//        new Textarea(driver, "Shipping Street").fillForAccounts(shippingStreet);
-//        return this;
-//    }
-
     public AccountsPage saveAccount() {
         saveAccountButton.click();
         return new AccountsPage(driver);

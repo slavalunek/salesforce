@@ -26,11 +26,11 @@ public class InputSearch {
         return this;
     }
 
-    public InputSearch fillSearchForParentAccount(String text) {
+    public InputSearch fillSearchForParentAccount() {
         By fullLocator = By.xpath(String.format("//span[text()='%s']//ancestor::div[contains(@class,'uiInput')]//input", label));
-        driver.findElement(fullLocator).sendKeys(text);
+        driver.findElement(fullLocator);
         driver.findElement(fullLocator).click();
-        By element = By.xpath("//div[@title='Ward-Rice']");
+        By element = By.xpath("//div[@title='Oberbrunner-Keeling']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).click();
         return this;

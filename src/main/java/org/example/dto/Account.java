@@ -1,8 +1,11 @@
 package org.example.dto;
 
+import java.util.Objects;
+
 public class Account {
 
     private String accountName;
+    private String parentAccount;
     private String website;
     private String phone;
     private String type1;
@@ -30,6 +33,14 @@ public class Account {
 
     public void setAccountName(String accountName) {
         this.accountName = accountName;
+    }
+
+    public String getParentAccount() {
+        return parentAccount;
+    }
+
+    public void setParentAccount(String parentAccount) {
+        this.parentAccount = parentAccount;
     }
 
     public String getWebsite() {
@@ -158,5 +169,53 @@ public class Account {
 
     public void setShippingStreet(String shippingStreet) {
         this.shippingStreet = shippingStreet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return accountName.equals(account.accountName) && Objects.equals(parentAccount, account.parentAccount) &&
+                Objects.equals(website, account.website) && Objects.equals(phone, account.phone) &&
+                Objects.equals(type1, account.type1) && Objects.equals(type2, account.type2) &&
+                Objects.equals(employees, account.employees) && Objects.equals(billingCity, account.billingCity) &&
+                Objects.equals(billingZip, account.billingZip) && Objects.equals(province, account.province) &&
+                Objects.equals(billingCountry, account.billingCountry) && Objects.equals(shippingCity,
+                account.shippingCity) && Objects.equals(shippingZip, account.shippingZip) &&
+                Objects.equals(shippingState, account.shippingState) && Objects.equals(shippingCountry,
+                account.shippingCountry) && Objects.equals(description, account.description) &&
+                Objects.equals(billingStreet, account.billingStreet) && Objects.equals(shippingStreet, account.shippingStreet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountName, parentAccount, website, phone, type1, type2, employees, billingCity, billingZip,
+                province, billingCountry, shippingCity, shippingZip, shippingState, shippingCountry, description,
+                billingStreet, shippingStreet);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountName='" + accountName + '\'' +
+                ", parentAccount='" + parentAccount + '\'' +
+                ", website='" + website + '\'' +
+                ", phone='" + phone + '\'' +
+                ", type1='" + type1 + '\'' +
+                ", type2='" + type2 + '\'' +
+                ", employees='" + employees + '\'' +
+                ", billingCity='" + billingCity + '\'' +
+                ", billingZip='" + billingZip + '\'' +
+                ", province='" + province + '\'' +
+                ", billingCountry='" + billingCountry + '\'' +
+                ", shippingCity='" + shippingCity + '\'' +
+                ", shippingZip='" + shippingZip + '\'' +
+                ", shippingState='" + shippingState + '\'' +
+                ", shippingCountry='" + shippingCountry + '\'' +
+                ", description='" + description + '\'' +
+                ", billingStreet='" + billingStreet + '\'' +
+                ", shippingStreet='" + shippingStreet + '\'' +
+                '}';
     }
 }

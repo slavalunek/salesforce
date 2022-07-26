@@ -18,10 +18,9 @@ public class FieldParentAccount {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public FieldParentAccount getText() {
+    public String getText() {
         By fullLocator = By.xpath(String.format("//span[text()='%s']//" +
-                "ancestor::div[contains(@class,'label-inline')]//span[@id='window']", label));
-        driver.findElement(fullLocator).getText();
-        return this;
+                "ancestor::div[contains(@class,'slds-form-element')]//span[text()='Oberbrunner-Keeling']", label));
+        return driver.findElement(fullLocator).getText();
     }
 }
