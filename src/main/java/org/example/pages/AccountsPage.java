@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class AccountsPage extends BasePage {
 
     @FindBy(xpath = "//div[@title='New']")
@@ -22,23 +24,25 @@ public class AccountsPage extends BasePage {
 
     @Override
     public boolean isPageOpened() {
-        By accountsLocator = By.xpath("//div[contains(@class,'slds-breadcrumb__item')]//span[text()='Accounts']");
+        waitForPageLoaded();
+        By accountsLocator = By.xpath("//div[@title='New']");
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(accountsLocator));
+            log.info("The page {} was opened successfully","Account");
             return true;
         } catch (TimeoutException e){
+            log.info("The page {} was not opened because of error: {}","Account",e.getMessage());
             return false;
         }
     }
 
     public AccountsPage open() {
-        driver.get("https://d8d000005ce1yeaw.lightning.force.com/lightning/o/Account/list?filterName=Recent");
+        driver.get(baseUrl + "lightning/o/Account/list?filterName=Recent");
         return this;
     }
 
     public NewAccountModal clickNewButton() {
         newButton.click();
-        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Save']")));
         return new NewAccountModal(driver);
     }
 

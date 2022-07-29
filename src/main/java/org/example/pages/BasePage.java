@@ -11,6 +11,7 @@ public abstract class BasePage {
 
     WebDriver driver;
     WebDriverWait wait;
+    String baseUrl = "https://d8d000005ce1yeaw.lightning.force.com/";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

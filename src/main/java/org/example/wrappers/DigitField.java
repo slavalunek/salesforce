@@ -1,11 +1,13 @@
 package org.example.wrappers;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+@Log4j2
 public class DigitField {
 
     WebDriver driver;
@@ -21,6 +23,9 @@ public class DigitField {
     public String getText() {
         By fullLocator = By.xpath(String.format("//span[text()='%s']//" +
                 "ancestor::div[contains(@class,'label-inline')]//lightning-formatted-number[@slot='outputField']", label));
+        String locator = String.format("//span[text()='%s']//" +
+                "ancestor::div[contains(@class,'label-inline')]//lightning-formatted-number[@slot='outputField']", label);
+        log.info("the element will be found by xpath locator {}",locator);
         return driver.findElement(fullLocator).getText();
     }
 }
